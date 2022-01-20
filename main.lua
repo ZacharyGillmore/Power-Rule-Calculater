@@ -8,6 +8,7 @@ function isnumber(c)
 	end
 	return false
 end
+
 function is_term_sep(c)
 	local ops = {"+","-"}
 	for k,v in pairs(ops)
@@ -35,7 +36,16 @@ end
 table.insert(terms, string.sub(eq,term_si,string.len(eq)))
 for k,v in pairs(terms)
 do
-	print(v)
+	for i = 1,string.len(v)
+	do
+		if string.sub(v,i,i) == "^" then
+			num = tonumber(string.sub(v,i+1,-1))*tonumber(string.sub(v,1,i-2))
+			v = tostring(num) .. string.sub(v,i-1,i-1) .. string.sub(v,i,i) ..tostring(tonumber(string.sub(v,i+1,-1))-1)
+			terms[k] = v
+			break
+		end
+	end
+	print(terms[k])
 end
 
 for k,v in pairs(ops)
