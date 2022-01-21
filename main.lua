@@ -1,11 +1,13 @@
-equation = "11x^3 + 88x^3 + 11y^2 - 66y^1"
-
 --TODO list
 	--Format input string to remove fractions and divisions by variable
 	--Return error or reject input if problem cannot be solved with power rule
 	--Add GUI
 
+equation = "11x^3 + 88x^3 + 11y^2 - 66y^1"
+equation = string.gsub(equation, " ", "")
+
 function is_term_sep(c)
+	--checks if character is '+' or '-'
 	local ops = {"+","-"}
 	for k,v in pairs(ops)
 	do
@@ -15,12 +17,13 @@ function is_term_sep(c)
 	end
 	return false
 end
-equation = string.gsub(equation, " ", "")
 
 function power_rule(eq)
+	--performs the power rule on string
 	local terms = {}
 	local ops = {}
 	local term_si = 1
+	--loop seperates equation into terms
 	for i = 1,string.len(eq),1
 	do
 		if(is_term_sep(string.sub(eq,i,i))) then
@@ -29,8 +32,9 @@ function power_rule(eq)
 			term_si = i + 1 
 		end
 	end
-
 	table.insert(terms, string.sub(eq,term_si,string.len(eq)))
+
+	--loop performs power rule own each term
 	for k,v in pairs(terms)
 	do
 		for i = 1,string.len(v)
@@ -51,6 +55,7 @@ function power_rule(eq)
 	end
 	local out = ""
 	local counter = 1
+	--Puts terms back into an equation string
 	for k,v in pairs(ops)
 	do
 		out = out .. terms[k] .. " " .. ops[k] .. " "
@@ -59,4 +64,5 @@ function power_rule(eq)
 	out = out .. terms[counter]
 	return out
 end
+
 print(power_rule(equation))
