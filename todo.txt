@@ -1,0 +1,12 @@
+-Limit the power_rule function to only working on a single term(this is because the tables will likely be used in other functions)
+-Verify input by:
+    -checking for invalid characters
+    -checking for multiple variables in a term
+    -checking for two operations in a row like '++' This can be done by comparing amount of 'terms' witb 'ops'
+    -check for parenthises(either that or add distribution functionality)
+-Format input by:
+    -removing no variable terms
+    -removing division
+    -removing multiplication
+    -add exponents to all variables (x=x^1) or add case to power rule function
+-add GUI

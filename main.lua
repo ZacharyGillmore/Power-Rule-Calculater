@@ -1,9 +1,4 @@
---TODO list
-	--Format input string to remove fractions and divisions by variable
-	--Return error or reject input if problem cannot be solved with power rule
-	--Add GUI
-
-equation = "11x^3 + 88x^3 + 11y^2 - 66y^1"
+equation = "11x^3 + 88x^3 + 11a^2 - 66b^1"
 equation = string.gsub(equation, " ", "")
 
 function is_term_sep(c)
