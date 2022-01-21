@@ -1,13 +1,10 @@
-eq = "11x^3 + 88x + 11y^2"
-function isnumber(c)
-	for i = 0,9,1
-	do
-		if c == tostring(i) then
-			return true
-		end
-	end
-	return false
-end
+eq = "11x^3 + 88x^3 + 11y^2 - 66y^1"
+
+--TODO list
+	--Format input string to remove fractions and divisions by variable
+	--Return error or reject input if problem cannot be solved with power rule
+	--Put power rule calculater in its own function
+	--Add GUI
 
 function is_term_sep(c)
 	local ops = {"+","-"}
@@ -40,15 +37,24 @@ do
 	do
 		if string.sub(v,i,i) == "^" then
 			num = tonumber(string.sub(v,i+1,-1))*tonumber(string.sub(v,1,i-2))
-			v = tostring(num) .. string.sub(v,i-1,i-1) .. string.sub(v,i,i) ..tostring(tonumber(string.sub(v,i+1,-1))-1)
+			if tonumber(string.sub(v,i+1,-1))-1 == 0 then
+				v = tostring(num)
+			elseif tonumber(string.sub(v,i+1,-1))-1 == 1 then
+				v = tostring(num) .. string.sub(v,i-1,i-1)
+			else
+				v = tostring(num) .. string.sub(v,i-1,i-1) .. "^" ..tostring(tonumber(string.sub(v,i+1,-1))-1)
+			end
 			terms[k] = v
 			break
 		end
 	end
-	print(terms[k])
 end
-
+out = ""
+counter = 1
 for k,v in pairs(ops)
 do
-	print(v)
+	out = out .. terms[k] .. " " .. ops[k] .. " "
+	counter = counter + 1
 end
+out = out .. terms[counter]
+print(out)
