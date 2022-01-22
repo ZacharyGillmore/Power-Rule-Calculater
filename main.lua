@@ -101,25 +101,13 @@ end
 function enterText()
     if functionBoxSelected == true then
         button(centeredBoxLocation(500),200,500,70,5,170,120,220,theFunction,245,1,false,false,true)
-        function love.keypressed(key)
-            if key == "backspace" then
-                theFunction = string.sub(theFunction,0,(#theFunction-1))
-            elseif key == "return" then
-                functionBoxSelected = false
-            elseif #theFunction <= 15 and inList(key,validKeys) then --Something probably on this line to accept carets (^)
-                if key == "space" then
-                  theFunction = theFunction .. " "
-                else
-                  theFunction = theFunction .. string.lower(key)
-            end
-        end
-    end
     elseif functionBoxSelected == false then
         button(centeredBoxLocation(500),200,500,70,5,130,80,180,theFunction,245,1,true,true,true)
-        function love.keypressed(key)
-            --Empty to reset the love.keypressed function
-        end
     end
+end
+
+function love.textinput(t)
+    theFunction = theFunction .. t
 end
 
 function inList(character,lst)
