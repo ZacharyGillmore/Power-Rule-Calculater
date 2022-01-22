@@ -10,3 +10,5 @@
     -removing multiplication
     -add exponents to all variables (x=x^1) or add case to power rule function
 -add GUI
+    -Modify enterText() function so that it's able to take in numbers (I include a list of  characters otherwise keys like lshift are included)
+        -enterText() right now can't take in the caret symbol (^) because of this problem
