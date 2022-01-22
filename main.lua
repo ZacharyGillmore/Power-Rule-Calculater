@@ -19,7 +19,7 @@ function power_rule(eq)
     local ops = {}
     local term_si = 1
     --loop seperates equation into terms
-    for i = 1,string.len(eq),1
+    for i = 1,#eq,1
     do
         if(is_term_sep(string.sub(eq,i,i))) then
             table.insert(terms, string.sub(eq,term_si,i-1))
@@ -27,12 +27,12 @@ function power_rule(eq)
             term_si = i + 1 
         end
     end
-    table.insert(terms, string.sub(eq,term_si,string.len(eq)))
+    table.insert(terms, string.sub(eq,term_si,#eq))
 
     --loop performs power rule own each term
     for k,v in pairs(terms)
     do
-        for i = 1,string.len(v)
+        for i = 1,#v
         do
             if string.sub(v,i,i) == "^" then
                 local num = tonumber(string.sub(v,i+1,-1))*tonumber(string.sub(v,1,i-2))
@@ -107,10 +107,10 @@ function enterText()
             elseif key == "return" then
                 functionBoxSelected = false
             elseif #theFunction <= 15 and inList(key,validKeys) then --Something probably on this line to accept carets (^)
-            if key == "space" then
-              theFunction = theFunction .. " "
-            else
-              theFunction = theFunction .. string.upper(key)
+                if key == "space" then
+                  theFunction = theFunction .. " "
+                else
+                  theFunction = theFunction .. string.lower(key)
             end
         end
     end
