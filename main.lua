@@ -107,7 +107,9 @@ function enterText()
 end
 
 function love.textinput(t)
-    theFunction = theFunction .. t
+    if not inList(t,invalidKeys) then
+        theFunction = theFunction .. t
+    end
 end
 
 function inList(character,lst)
@@ -135,7 +137,7 @@ function love.load()
     staticFont = love.graphics.newFont("MonospaceTypewriter.ttf", 44.4,"normal",30)
     functionBoxSelected = false
     pressed = false
-    validKeys = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","space","+","-","/","*","^"}
+    invalidKeys = {'!','@', '#', '&', '[', '{', '}', ']', ':', ';', ',', '?', '~', '$','=', '<', '>'}
     theFunction = ""
 end
 
