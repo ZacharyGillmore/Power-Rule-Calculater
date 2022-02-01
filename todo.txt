@@ -11,3 +11,4 @@
     -add exponents to all variables (x=x^1) or add case to power rule function
 -add GUI
     -print 'f(x) =' in front of text field
+    -add enter function
