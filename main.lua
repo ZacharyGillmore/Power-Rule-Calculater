@@ -43,12 +43,19 @@ function enterText()
     elseif functionBoxSelected == false then
         button(centeredBoxLocation(500),200,500,70,5,130,80,180,theFunction,245,1,true,true,true)
     end
+
+    if enterPressedOnce == true and functionBoxSelected == false then
+        love.graphics.setColor(1,1,1)
+        love.graphics.print("f'(x) = ",staticFont,(win_h/2-10)+(12.3*6),120,0,1,1)
+    end
 end
 
 function love.keypressed(key)
     if key == "backspace" then
         theFunction = string.sub(theFunction,1,#theFunction-1)
     elseif key == "return" then
+        enterPressedOnce = true
+        functionBoxSelected = false
         theFunction = PR.power_rule(theFunction)
     elseif key == "c" then
         theFunction = ""
@@ -86,6 +93,7 @@ function love.load()
     staticFont = love.graphics.newFont("MonospaceTypewriter.ttf", 44.4,"normal",30)
     functionBoxSelected = false
     pressed = false
+    enterPressedOnce = false
     invalidKeys = {'!','@', '#', '&', '[', '{', '}', ']', ':', ';', ',', '?', '~', '$','=', '<', '>','/','(',')','*'}
     theFunction = ""
 end
